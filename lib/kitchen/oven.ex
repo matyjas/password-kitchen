@@ -4,6 +4,6 @@ defmodule Kitchen.Oven do
   """
 
   def bake do
-    "pa55wordpassword"
+    "Pa55wordpassword"
   end
 end
