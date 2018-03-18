@@ -1,4 +1,5 @@
+before_script:
+  - kerl list installations
 language: elixir
 elixir: '1.6'
 otp_release: '20.0'
-before_script: kerl list installations
