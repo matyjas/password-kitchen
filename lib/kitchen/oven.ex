@@ -4,6 +4,6 @@ defmodule Kitchen.Oven do
   """
 
   def bake do
-    "Pa55wordpassword"
+    "Pa55wor]p@$$wor}"
   end
 end

@@ -25,7 +25,7 @@ defmodule Kitchen.OvenTest do
 
     test "excluding ambiguous chars" do
       password = Oven.bake
-      ambig_regex = ~r([0O1l])
+      ambig_regex = ~r([0O1l|`'])
       assert !(password =~ ambig_regex)
     end
 
@@ -45,6 +45,12 @@ defmodule Kitchen.OvenTest do
       password = Oven.bake
       whitespace_regex = ~r(\s)
       assert !(password =~ whitespace_regex)
+    end
+
+    test "including symbol characters" do
+      password = Oven.bake
+      symbol_regex = ~r([{-~/[-_:-@!-/])
+      assert password =~ symbol_regex
     end
   end
 end
