@@ -4,7 +4,7 @@ defmodule Kitchen.OvenTest do
   alias Kitchen.Oven
 
   describe "Oven.bake defaults produce passwords" do
-    
+
     test "of 16 char" do
       password = Oven.bake
       assert is_binary(password)
