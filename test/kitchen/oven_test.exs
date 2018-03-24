@@ -5,10 +5,10 @@ defmodule Kitchen.OvenTest do
 
   describe "Oven.bake defaults produce passwords" do
 
-    test "of 16 char" do
+    test "of 12 char" do
       password = Oven.bake
       assert is_binary(password)
-      assert 16 == String.length(password)
+      assert 12 == String.length(password)
     end
 
     test "containing numbers" do
