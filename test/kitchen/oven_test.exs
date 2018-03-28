@@ -3,8 +3,8 @@ defmodule Kitchen.OvenTest do
 
   alias Kitchen.Oven
 
-  			 @tag :skip
   describe "Oven.bake defaults produce passwords" do
+
     test "of 12 char" do
       password = Oven.bake()
       assert is_binary(password)

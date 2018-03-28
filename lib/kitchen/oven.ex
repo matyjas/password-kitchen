@@ -7,8 +7,18 @@ defmodule Kitchen.Oven do
 
   
   def bake do
-    @nums
-    |> Enum.take_random(12)
+
+    1..12
+    |> Enum.map(&(random_char(&1)))
     |> to_string
+
+  end
+
+  defp random_char(_) do
+    random_char()
+  end
+
+  defp random_char() do
+    Enum.random(@nums)
   end
 end
