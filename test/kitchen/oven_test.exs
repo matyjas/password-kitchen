@@ -17,7 +17,6 @@ defmodule Kitchen.OvenTest do
       assert password =~ number_regex
     end
 
-    			 @tag :skip
     test "containing non-numbers" do
       password = Oven.bake()
       non_number_regex = ~r(\D)
@@ -30,14 +29,12 @@ defmodule Kitchen.OvenTest do
       assert !(password =~ ambig_regex)
     end
 
-    			 @tag :skip
     test "including CAPITAL letters" do
       password = Oven.bake()
       capital_regex = ~r([A-Z])
       assert password =~ capital_regex
     end
 
-    			 @tag :skip
     test "including lower case letters" do
       password = Oven.bake()
       lower_case_regex = ~r([a-z])
@@ -50,17 +47,17 @@ defmodule Kitchen.OvenTest do
       assert !(password =~ whitespace_regex)
     end
 
-    			 @tag :skip
+    @tag :skip
     test "including symbol characters" do
       password = Oven.bake()
       symbol_regex = ~r([{-~/[-_:-@!-/])
       assert password =~ symbol_regex
     end
 
-			 test "that are not the same each time" do
-			   password_1 = Oven.bake()
-			   password_2 = Oven.bake()
-			   assert password_1 != password_2
-			 end
-			end
+    test "that are not the same each time" do
+      password_1 = Oven.bake()
+      password_2 = Oven.bake()
+      assert password_1 != password_2
+    end
+  end
 end

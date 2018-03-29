@@ -4,7 +4,15 @@ defmodule Kitchen.Oven do
   """
 
   @nums ?2..?9
-
+  @lower_case_1 ?a..?k
+  @lower_case_2 ?m..?z
+  @upper_case_1 ?A..?H
+  @upper_case_2 ?J..?N
+  @upper_case_3 ?P..?Z
+  @symbols_1 ?1..?&
+  @symbols_2 ?(..?/
+  @symbols_3 ?:..?@
+    
   
   def bake do
 
@@ -19,6 +27,18 @@ defmodule Kitchen.Oven do
   end
 
   defp random_char() do
-    Enum.random(@nums)
+    import Enum, only: [concat: 2, random: 1]
+    
+    valid_chars = @nums
+    |> concat(@lower_case_1)
+    |> concat(@lower_case_2)
+    |> concat(@upper_case_1)
+    |> concat(@upper_case_2)
+    |> concat(@upper_case_3)
+#    |> concat(@symbol_1)
+#    |> concat(@symbol_2)
+#    |> concat(@symbol_3)
+    
+    random(valid_chars)
   end
 end
