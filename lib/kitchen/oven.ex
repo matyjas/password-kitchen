@@ -9,19 +9,22 @@ defmodule Kitchen.Oven do
   @upper_case_1 ?A..?H
   @upper_case_2 ?J..?N
   @upper_case_3 ?P..?Z
-  @symbols_1 ?1..?&
-  @symbols_2 ?(..?/
-  @symbols_3 ?:..?@
-    
-  
-  def bake do
+  @symbol_1 ?!..?&
+  @symbol_2 ?(..?/
+  @symbol_3 ?:..?@
+  @symbol_4 ?[..?_
+  @symbol_5 ?{..?~
 
+  def bake do
+    password
+  end
+
+  defp password do
     1..12
     |> Enum.map(&(random_char(&1)))
     |> to_string
-
   end
-
+  
   defp random_char(_) do
     random_char()
   end
@@ -35,9 +38,11 @@ defmodule Kitchen.Oven do
     |> concat(@upper_case_1)
     |> concat(@upper_case_2)
     |> concat(@upper_case_3)
-#    |> concat(@symbol_1)
-#    |> concat(@symbol_2)
-#    |> concat(@symbol_3)
+    |> concat(@symbol_1)
+    |> concat(@symbol_2)
+    |> concat(@symbol_3)
+    |> concat(@symbol_4)
+    |> concat(@symbol_5)
     
     random(valid_chars)
   end
