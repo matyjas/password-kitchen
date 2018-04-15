@@ -13,12 +13,13 @@ defmodule Kitchen.Oven do
   @symbol_2 ?(..?/
   @symbol_3 ?:..?@
   @symbol_4 ?[..?_
-  @symbol_5 ?{..?~
+  @symbol_5 ?{..?{
+  @symbol_6 ?}..?~
 
   def bake do
     password
   end
-
+  
   defp password do
     1..12
     |> Enum.map(&(random_char(&1)))
@@ -43,6 +44,7 @@ defmodule Kitchen.Oven do
     |> concat(@symbol_3)
     |> concat(@symbol_4)
     |> concat(@symbol_5)
+    |> concat(@symbol_6)
     
     random(valid_chars)
   end
