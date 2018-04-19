@@ -17,7 +17,7 @@ defmodule Kitchen.Oven do
   @symbol_6 ?}..?~
 
   def bake do
-    password
+    password()
   end
 
   defp password do
