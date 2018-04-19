@@ -19,20 +19,20 @@ defmodule Kitchen.Oven do
   def bake do
     password
   end
-  
+
   defp password do
     1..12
     |> Enum.map(&(random_char(&1)))
     |> to_string
   end
-  
+
   defp random_char(_) do
     random_char()
   end
 
-  defp random_char() do
+  defp random_char do
     import Enum, only: [concat: 2, random: 1]
-    
+
     valid_chars = @nums
     |> concat(@lower_case_1)
     |> concat(@lower_case_2)
@@ -45,7 +45,7 @@ defmodule Kitchen.Oven do
     |> concat(@symbol_4)
     |> concat(@symbol_5)
     |> concat(@symbol_6)
-    
+
     random(valid_chars)
   end
 end

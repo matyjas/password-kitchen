@@ -7,7 +7,7 @@ defmodule Kitchen.ValidatorTest do
     password = "4?KG9LD`bQ?H"
     assert Validator.confirm(password)
   end
-  
+
   test "password with no chars is invalid" do
     password = "123456789123"
     refute Validator.confirm(password)

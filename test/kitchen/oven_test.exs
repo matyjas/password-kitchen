@@ -26,7 +26,7 @@ defmodule Kitchen.OvenTest do
     test "excluding ambiguous chars" do
       password = Oven.bake()
       ambig_regex = ~r([0O1l|`'])
-      refute password =~ ambig_regex 
+      refute password =~ ambig_regex
     end
 
     test "including CAPITAL letters" do
