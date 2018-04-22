@@ -23,6 +23,11 @@ defmodule Kitchen.ValidatorTest do
       password = "123Pass456word"
       refute confirm(password)
     end
+
+    test "password with no caps (fails)" do
+      password = "~1whorms"
+      refute confirm(password)
+    end
   end
 
   describe "helper funcs for rules" do
@@ -54,6 +59,16 @@ defmodule Kitchen.ValidatorTest do
     test ".has_sym fails password without symbols" do
       password = "tLZSQG8y"
       refute has_sym(password)
+    end
+
+    test ".has_caps passes password with caps" do
+      password = "PASSWORD1234"
+      assert has_caps(password)
+    end
+
+    test ".has_caps fails password without caps" do
+      password = "*w9<\3x.v!w/vd6`"
+      refute has_caps(password)
     end
   end
 end
