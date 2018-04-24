@@ -17,7 +17,8 @@ defmodule Kitchen.Oven do
   @symbol_6 ?}..?~
 
   def bake do
-    password()
+    Stream.repeatedly(&password/0)
+    |> Enum.at(0)
   end
 
   defp password do
