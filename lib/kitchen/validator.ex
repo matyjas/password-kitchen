@@ -14,7 +14,7 @@ defmodule Kitchen.Validator do
   def has_caps(password) do
     password =~ ~r([A-Z])
   end
-  
+
   def has_num(password) do
     password =~ ~r([0-9])
   end

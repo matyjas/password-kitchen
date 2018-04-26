@@ -15,7 +15,12 @@ defmodule Kitchen.ValidatorTest do
     end
 
     test "password with no numbers (fails)" do
-      password = "passwordword"
+      password = "T?@cgK#pfowu"
+      refute confirm(password)
+    end
+
+    test "another password with no numbers (fails)" do
+      password = "+^-s}{dzYSpm"
       refute confirm(password)
     end
 
@@ -47,7 +52,7 @@ defmodule Kitchen.ValidatorTest do
     end
 
     test ".has_nums fails password without nums" do
-      password = "passpasswordword"
+      password = "%+/qSY$<[&]/"
       refute has_num(password)
     end
 

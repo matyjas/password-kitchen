@@ -17,13 +17,19 @@ defmodule Kitchen.Oven do
   @symbol_6 ?}..?~
 
   def bake do
+    password()
+  end
+
+  def bake_stream do
     Stream.repeatedly(&password/0)
+    |> Stream.take_while(&Kitchen.Validator.confirm(&1))
+    |> Stream.map(&IO.inspect(&1))
     |> Enum.at(0)
   end
 
   defp password do
     1..12
-    |> Enum.map(&(random_char(&1)))
+    |> Enum.map(&random_char(&1))
     |> to_string
   end
 
@@ -34,18 +40,19 @@ defmodule Kitchen.Oven do
   defp random_char do
     import Enum, only: [concat: 2, random: 1]
 
-    valid_chars = @nums
-    |> concat(@lower_case_1)
-    |> concat(@lower_case_2)
-    |> concat(@upper_case_1)
-    |> concat(@upper_case_2)
-    |> concat(@upper_case_3)
-    |> concat(@symbol_1)
-    |> concat(@symbol_2)
-    |> concat(@symbol_3)
-    |> concat(@symbol_4)
-    |> concat(@symbol_5)
-    |> concat(@symbol_6)
+    valid_chars =
+      @nums
+      |> concat(@lower_case_1)
+      |> concat(@lower_case_2)
+      |> concat(@upper_case_1)
+      |> concat(@upper_case_2)
+      |> concat(@upper_case_3)
+      |> concat(@symbol_1)
+      |> concat(@symbol_2)
+      |> concat(@symbol_3)
+      |> concat(@symbol_4)
+      |> concat(@symbol_5)
+      |> concat(@symbol_6)
 
     random(valid_chars)
   end
