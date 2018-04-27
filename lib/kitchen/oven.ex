@@ -17,10 +17,22 @@ defmodule Kitchen.Oven do
   @symbol_6 ?}..?~
 
   def bake do
-    password()
+    valid_password()
   end
 
-  def bake_stream do
+  defp valid_password(password \\ "", valid? \\ false)
+  
+  defp valid_password(password, true) do
+    password
+  end
+  
+  defp valid_password(_invalid_password, false) do
+    password = password()
+    valid = Kitchen.Validator.confirm(password)
+    valid_password(password, valid)
+  end
+
+  defp bake_stream do
     Stream.repeatedly(&password/0)
     |> Stream.take_while(&Kitchen.Validator.confirm(&1))
     |> Stream.map(&IO.inspect(&1))
