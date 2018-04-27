@@ -4,7 +4,10 @@ defmodule Kitchen.Validator do
   """
 
   def confirm(password) do
-    has_char(password) && has_num(password) && has_sym(password) && has_caps(password)
+    has_char(password) &&
+      has_num(password) &&
+      has_sym(password) &&
+      has_caps(password)
   end
 
   def has_char(password) do

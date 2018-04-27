@@ -3,6 +3,8 @@ defmodule Kitchen.Oven do
   In the Password Kitchen, Oven bakes passwords
   """
 
+  alias Kitchen.Validator
+
   @nums ?2..?9
   @lower_case_1 ?a..?k
   @lower_case_2 ?m..?z
@@ -21,22 +23,15 @@ defmodule Kitchen.Oven do
   end
 
   defp valid_password(password \\ "", valid? \\ false)
-  
+
   defp valid_password(password, true) do
     password
   end
-  
+
   defp valid_password(_invalid_password, false) do
     password = password()
-    valid = Kitchen.Validator.confirm(password)
+    valid = Validator.confirm(password)
     valid_password(password, valid)
-  end
-
-  defp bake_stream do
-    Stream.repeatedly(&password/0)
-    |> Stream.take_while(&Kitchen.Validator.confirm(&1))
-    |> Stream.map(&IO.inspect(&1))
-    |> Enum.at(0)
   end
 
   defp password do
