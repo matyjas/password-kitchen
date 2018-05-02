@@ -23,7 +23,9 @@ defmodule PK.MixProject do
   defp deps do
     [
       {:credo, "~> 0.9.0-rc1", only: [:dev, :test]},
-      {:dialyxir, "~> 0.5", only: [:dev], runtime: false}
+      {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
+      {:cowboy, "~> 1.0.0"},
+      {:plug, "~> 1.0"}
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
     ]
   end
