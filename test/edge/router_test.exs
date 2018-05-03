@@ -7,7 +7,6 @@ defmodule Edge.RouterTest do
   @opts Router.init([])
 
   test "everything is OK" do
-
     conn = conn(:get, "/api/diag/v1/ok")
     conn = Router.call(conn, @opts)
 
