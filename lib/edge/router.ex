@@ -7,7 +7,7 @@ defmodule Edge.Router do
   get "/api/diag/v1/ok" do
     send_resp(conn, 200, "ok")
   end
-  
+
   match _ do
     send_resp(conn, 404, "oooops")
   end

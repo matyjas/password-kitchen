@@ -5,11 +5,15 @@ defmodule PK.Application do
 
   use Application
 
+  alias Plug.Adapters.Cowboy
+  alias Edge.Router
+
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
       # Starts a worker by calling: PK.Worker.start_link(arg)
       # {PK.Worker, arg},
+      Cowboy.child_spec(scheme: :http, plug: Router, options: [port: 4001])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
