@@ -12,7 +12,7 @@ defmodule PK.Application do
   def start(_type, _args) do
 
     port = Application.fetch_env!(:password_kitchen, :port)
-    
+
     # List all child processes to be supervised
     children = [
       # Starts a worker by calling: PK.Worker.start_link(arg)
