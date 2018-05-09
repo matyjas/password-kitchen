@@ -1,9 +1,10 @@
 defmodule Edge.Supervisor do
   use Supervisor
+  @moduledoc "encapsulates config of plug/cowboy"
 
   alias Plug.Adapters.Cowboy
   alias Edge.Router
-  
+
   def start_link(opts) do
     Supervisor.start_link(__MODULE__, :ok, opts)
   end
