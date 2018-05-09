@@ -5,19 +5,13 @@ defmodule PK.Application do
 
   use Application
 
-  # extract Cowboy and Router into another app
-  alias Plug.Adapters.Cowboy
-  alias Edge.Router
-
   def start(_type, _args) do
-
-    port = Application.fetch_env!(:password_kitchen, :port)
 
     # List all child processes to be supervised
     children = [
       # Starts a worker by calling: PK.Worker.start_link(arg)
       # {PK.Worker, arg},
-      Cowboy.child_spec(scheme: :http, plug: Router, options: [port: port])
+      Edge.Supervisor
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
