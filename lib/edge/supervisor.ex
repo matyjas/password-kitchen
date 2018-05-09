@@ -11,10 +11,13 @@ defmodule Edge.Supervisor do
 
   def init(:ok) do
     port = Application.fetch_env!(:password_kitchen, :port)
+
     children = [
       Cowboy.child_spec(scheme: :http, plug: Router, options: [port: port])
     ]
-    opts = [strategy: :one_for_one, name: PK.Supervisor]
+
+    opts = [strategy: :one_for_one]
+
     Supervisor.init(children, opts)
   end
 end
