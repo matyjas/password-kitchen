@@ -4,6 +4,7 @@ defmodule Kitchen.Validator do
   """
 
   def confirm(password) do
+    # credo:disable-for-next-line Credo.Check.Readability.MaxLineLength
     has_char(password) && has_num(password) && has_sym(password) && has_caps(password)
   end
 
