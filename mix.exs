@@ -22,7 +22,7 @@ defmodule PK.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:credo, "~> 0.9.0-rc1", only: [:dev, :test]},
+      {:credo, "~> 0.9.1", only: [:dev, :test]},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
       {:cowboy, "~> 1.1"},
       {:plug, "~> 1.4"},

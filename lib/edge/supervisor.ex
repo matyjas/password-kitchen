@@ -6,10 +6,10 @@ defmodule Edge.Supervisor do
   alias Edge.Router
 
   def start_link(opts) do
-    Supervisor.start_link(__MODULE__, :ok, opts)
+    Supervisor.start_link(__MODULE__, opts)
   end
 
-  def init(:ok) do
+  def init(_opts) do
     port = Application.fetch_env!(:password_kitchen, :port)
 
     children = [
