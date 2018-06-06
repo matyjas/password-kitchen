@@ -26,7 +26,8 @@ defmodule PK.MixProject do
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
       {:cowboy, "~> 1.1"},
       {:plug, "~> 1.4"},
-      {:jason, "~> 1.0"}
+      {:jason, "~> 1.0"},
+      {:httpotion, "~> 3.1.0"}
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
     ]
   end
