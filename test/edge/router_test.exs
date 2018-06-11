@@ -14,4 +14,13 @@ defmodule Edge.RouterTest do
     assert conn.status == 200
     assert conn.resp_body == "ok"
   end
+
+  test "telegram edge" do
+    conn = conn(:post, "/api/telegram/v1")
+    conn = Router.call(conn, @opts)
+
+    assert conn.state == :sent
+    assert conn.status == 200
+    assert conn.resp_body == "ok"
+  end
 end
