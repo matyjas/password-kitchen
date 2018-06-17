@@ -11,18 +11,27 @@ defmodule Dialog.Convo do
     GenServer.start_link(__MODULE__, :ok, opts)
   end
 
-  def new_message(pid, message, parser, gateway) do
-
+  @spec put_message(term, term, term, term) :: term
+  def put_message(pid, message, parser, gateway) do
+    GenServer.cast(pid, {:put, message, parser, gateway})
   end
 
+  def get_messages(pid) do
+    GenServer.call(pid, :get)
+  end
+  
   # otp callbacks
 
   def init(:ok) do
-    {:ok, %{}}
+    {:ok, []}
   end
 
-  def handle_cast({:new_message, message, parser, gateway}, state) do
+  def handle_cast({:put, message, parser, _gateway}, state) do
+    utterance = parser.extract_utterance(message)
+    {:noreply, [utterance | state]}
+  end
 
-    {:noreply, state}
+  def handle_call(:get, _from, state) do
+    {:reply, state, state}
   end
 end
