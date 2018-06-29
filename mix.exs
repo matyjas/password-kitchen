@@ -28,7 +28,8 @@ defmodule PK.MixProject do
       {:cowboy, "~> 1.1"},
       {:plug, "~> 1.4"},
       {:jason, "~> 1.0"},
-      {:httpotion, "~> 3.1.0"}
+      {:httpotion, "~> 3.1.0"},
+      {:mox, "~> 0.3", only: :test}
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
     ]
   end

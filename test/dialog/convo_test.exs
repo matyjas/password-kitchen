@@ -1,8 +1,12 @@
 defmodule Dialog.ConvoTest do
   use ExUnit.Case, async: true
 
+  import Mox
+  
   alias Dialog.Convo
   alias Dialog.TestUtils.{SimpleMessage, MockGateway}
+
+  setup :verify_on_exit!
   
   test "can receive messages" do
     {:ok, pid} = Convo.start_link([])
@@ -30,6 +34,8 @@ defmodule Dialog.ConvoTest do
     message = "test-message"
     parser = SimpleMessage
     gateway = MockGateway
+
+    
     
     Convo.put_message(pid, message, parser, gateway)
   end
