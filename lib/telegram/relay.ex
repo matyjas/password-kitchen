@@ -1,6 +1,6 @@
 defmodule Telegram.Relay do
 
-  def forward(update) do
-    IO.inspect(update)
+  def forward(_update) do
+
   end
 end
