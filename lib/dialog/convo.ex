@@ -26,8 +26,12 @@ defmodule Dialog.Convo do
     {:ok, []}
   end
 
-  def handle_cast({:put, message, parser, _gateway}, state) do
+  def handle_cast({:put, message, parser, gateway}, state) do
     utterance = parser.extract_utterance(message)
+    sender_id = parser.extract_sender_id(message)
+    
+    gateway.send_password(sender_id, "password")
+    
     {:noreply, [utterance | state]}
   end
 
