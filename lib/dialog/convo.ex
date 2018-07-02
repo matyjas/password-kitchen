@@ -6,7 +6,7 @@ defmodule Dialog.Convo do
   """
 
   # public
-  
+
   def start_link(opts) do
     GenServer.start_link(__MODULE__, :ok, opts)
   end
@@ -19,7 +19,7 @@ defmodule Dialog.Convo do
   def get_messages(pid) do
     GenServer.call(pid, :get)
   end
-  
+
   # otp callbacks
 
   def init(:ok) do
@@ -29,9 +29,9 @@ defmodule Dialog.Convo do
   def handle_cast({:put, message, parser, gateway}, state) do
     utterance = parser.extract_utterance(message)
     sender_id = parser.extract_sender_id(message)
-    
+
     gateway.send_password(sender_id, "password")
-    
+
     {:noreply, [utterance | state]}
   end
 
