@@ -4,7 +4,7 @@ defmodule Dialog.ConvoTest do
   import Mox
 
   alias Dialog.Convo
-  alias Dialog.TestUtils.{SimpleMessage, StubGateway}
+  alias Support.Dialog.{StubMessage, StubGateway}
 
   setup :verify_on_exit!
 
@@ -13,7 +13,7 @@ defmodule Dialog.ConvoTest do
     assert is_pid(pid)
     message = %{}
 
-    Convo.put_message(pid, message, SimpleMessage, StubGateway)
+    Convo.put_message(pid, message, StubMessage, StubGateway)
     assert Process.alive?(pid)
   end
 
@@ -21,7 +21,7 @@ defmodule Dialog.ConvoTest do
     {:ok, pid} = Convo.start_link([])
     message = "test-message"
 
-    Convo.put_message(pid, message, SimpleMessage, StubGateway)
+    Convo.put_message(pid, message, StubMessage, StubGateway)
     conversation = Convo.get_messages(pid)
     assert conversation == [message]
   end
@@ -30,7 +30,7 @@ defmodule Dialog.ConvoTest do
     message = "test-message"
     expect(Mock.Gateway, :send_password, fn _, _ -> %HTTPotion.Response{} end)
 
-    cast = {:put, message, SimpleMessage, Mock.Gateway}
+    cast = {:put, message, StubMessage, Mock.Gateway}
     {:noreply, new_state} = Convo.handle_cast(cast, [])
 
     assert new_state == [message]
