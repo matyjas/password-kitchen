@@ -24,7 +24,7 @@ defmodule PK.MixProject do
   defp deps do
     [
       {:credo, "~> 0.9.1", only: [:dev, :test]},
-      {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
+      {:dialyxir, "~> 1.0.0-rc.2", only: [:dev], runtime: false},
       {:cowboy, "~> 1.1"},
       {:plug, "~> 1.4"},
       {:jason, "~> 1.0"},
