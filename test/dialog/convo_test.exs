@@ -4,8 +4,10 @@ defmodule Dialog.ConvoTest do
   import Mox
 
   alias Dialog.Convo
-  alias Support.Dialog.{StubMessage, StubGateway}
+  alias Support.Dialog.StubMessage
 
+  @gateway Support.Dialog.StubGateway #FakeGateway
+  
   setup :verify_on_exit!
 
   test "can receive messages" do
@@ -13,7 +15,7 @@ defmodule Dialog.ConvoTest do
     assert is_pid(pid)
     message = %{}
 
-    Convo.put_message(pid, message, StubMessage, StubGateway)
+    Convo.put_message(pid, message, StubMessage, @gateway)
     assert Process.alive?(pid)
   end
 
@@ -21,7 +23,7 @@ defmodule Dialog.ConvoTest do
     {:ok, pid} = Convo.start_link([])
     message = "test-message"
 
-    Convo.put_message(pid, message, StubMessage, StubGateway)
+    Convo.put_message(pid, message, StubMessage, @gateway)
     conversation = Convo.get_messages(pid)
     assert conversation == [message]
   end

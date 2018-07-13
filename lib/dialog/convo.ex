@@ -5,13 +5,15 @@ defmodule Dialog.Convo do
   holds a conversation with an end user, messaging platform agnostic
   """
 
+  alias Kitchen.Oven
+  
   # public
 
   def start_link(opts) do
     GenServer.start_link(__MODULE__, :ok, opts)
   end
 
-  @spec put_message(term, term, term, term) :: term
+  @spec put_message(pid, term, term, term) :: term
   def put_message(pid, message, parser, gateway) do
     GenServer.cast(pid, {:put, message, parser, gateway})
   end
@@ -29,8 +31,9 @@ defmodule Dialog.Convo do
   def handle_cast({:put, message, parser, gateway}, state) do
     utterance = parser.extract_utterance(message)
     sender_id = parser.extract_sender_id(message)
-
-    gateway.send_password(sender_id, "password")
+    password = Oven.bake()
+    
+    gateway.send_password(sender_id, password)
 
     {:noreply, [utterance | state]}
   end
