@@ -3,7 +3,7 @@ defmodule Kitchen.Oven do
   In the Password Kitchen, Oven bakes passwords
   """
 
-  alias Kitchen.Validator
+  alias Kitchen.{Validator, Password}
 
   @nums ?2..?9
   @lower_case_1 ?a..?k
@@ -19,7 +19,8 @@ defmodule Kitchen.Oven do
   @symbol_6 ?}..?~
 
   def bake do
-    valid_password()
+    psswd = valid_password()
+    %Password{password: psswd, size: 12, nums?: true, caps?: true, lowers?: true, symbols?: true}
   end
 
   defp valid_password(password \\ "", valid? \\ false)
