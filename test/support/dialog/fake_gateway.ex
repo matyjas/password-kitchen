@@ -4,9 +4,9 @@ defmodule Support.Dialog.FakeGateway do
   @moduledoc """
   A gateway that simply writes to console
   """
-  
+
   def send_message(_, _), do: %HTTPotion.Response{}
-  
+
   def send_password(_, password) do
     IO.puts(password)
     %HTTPotion.Response{}

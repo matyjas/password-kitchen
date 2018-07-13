@@ -6,7 +6,7 @@ defmodule Dialog.Convo do
   """
 
   alias Kitchen.Oven
-  
+
   # public
 
   def start_link(opts) do
@@ -32,7 +32,7 @@ defmodule Dialog.Convo do
     utterance = parser.extract_utterance(message)
     sender_id = parser.extract_sender_id(message)
     password = Oven.bake()
-    
+
     gateway.send_password(sender_id, password)
 
     {:noreply, [utterance | state]}

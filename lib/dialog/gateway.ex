@@ -10,7 +10,7 @@ defmodule Dialog.Gateway do
   @type response :: HTTPotion.Response.t()
 
   alias Kitchen.Password
-  
+
   @callback send_message(String.t(), String.t()) :: response
   @callback send_password(String.t(), %Password{}) :: response
   @callback send_onboarding(String.t(), String.t()) :: response

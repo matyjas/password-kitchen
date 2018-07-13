@@ -6,8 +6,9 @@ defmodule Dialog.ConvoTest do
   alias Dialog.Convo
   alias Support.Dialog.StubMessage
 
-  @gateway Support.Dialog.StubGateway #FakeGateway
-  
+  # FakeGateway
+  @gateway Support.Dialog.StubGateway
+
   setup :verify_on_exit!
 
   test "can receive messages" do
