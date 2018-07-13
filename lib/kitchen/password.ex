@@ -6,6 +6,7 @@ defmodule Kitchen.Password do
   #  alias __MODULE__
 
   @enforce_keys [:password, :size, :nums?, :caps?, :symbols?, :lowers?]
+  # credo:disable-for-next-line Credo.Check.Readability.MaxLineLength
   defstruct password: "", size: 0, nums?: false, caps?: false, symbols?: false, lowers?: false
 end
 

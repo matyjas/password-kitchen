@@ -20,6 +20,7 @@ defmodule Kitchen.Oven do
 
   def bake do
     psswd = valid_password()
+    # credo:disable-for-next-line Credo.Check.Readability.MaxLineLength
     %Password{password: psswd, size: 12, nums?: true, caps?: true, lowers?: true, symbols?: true}
   end
 
