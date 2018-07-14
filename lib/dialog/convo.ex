@@ -18,6 +18,7 @@ defmodule Dialog.Convo do
     GenServer.cast(pid, {:put, message, parser, gateway})
   end
 
+  @spec get_messages(pid) :: term
   def get_messages(pid) do
     GenServer.call(pid, :get)
   end
