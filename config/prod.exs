@@ -15,7 +15,7 @@ telegram_token =
       token
     nil ->
       "NO_TOKEN_4_TELEGRAM"
-      
+  end      
 
 # Pull Telegram token
 config :password_kitchen, telegram_token: telegram_token
