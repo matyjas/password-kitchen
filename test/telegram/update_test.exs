@@ -20,7 +20,7 @@ defmodule Telegram.UpdateTest do
 	"first_name" => "Maciej",
 	"id" => 228303213,
 	"is_bot" => false,
-	"language_code" => "en",
+	"language_code" => "en-US",
 	"username" => "Matyjas"},
       "message_id" => 1,
       "text" => @start_mess_text
@@ -39,7 +39,7 @@ defmodule Telegram.UpdateTest do
     "first_name" => "Maciej",
     "id" => 228303213,
     "is_bot" => false,
-    "language_code" => "en",
+    "language_code" => "en-US",
     "username" => "Matyjas"},
   "message_id" => 2,
   "text" => "Test"}, "update_id" => 158840566}
