@@ -1,6 +1,8 @@
 defmodule Telegram.Gateway do
   use GenServer
 
+  @behaviour Dialog.Gateway
+
   @moduledoc """
   GenServer acts as `Gateway` to Telegram messaging
   """

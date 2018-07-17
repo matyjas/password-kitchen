@@ -34,7 +34,8 @@ defmodule Dialog.Convo do
     sender_id = parser.extract_sender_id(message)
     password = Oven.bake()
 
-    gateway.send_password(sender_id, password)
+    {:ok, gateway_pid} = gateway.start_link([])
+    gateway.send_password(gateway_pid, sender_id, password)
 
     {:noreply, [utterance | state]}
   end
