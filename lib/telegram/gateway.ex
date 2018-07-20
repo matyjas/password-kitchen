@@ -56,15 +56,21 @@ defmodule Telegram.Gateway do
     {:stop, :normal, @stateless}
   end
 
+  ## utils
+
+  def encode_message(to_id, message) do
+    Jason.encode!(%{"chat_id": to_id, "text": message})
+  end
+  
   ## private
 
   defp send_message(to_id, message) do
-    body = Poison.encode!(%{"chat_id": to_id, "text": message})
+    body = encode_message(to_id, message)
     request("/sendMessage", body)
   end
 
   defp send_password(to_id, %Password{password: password}) do
-    body = Poison.encode!(%{"chat_id": to_id, "text": password})
+    body = encode_message(to_id, password)
     request("/sendMessage", body)
   end
   

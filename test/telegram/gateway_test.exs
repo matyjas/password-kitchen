@@ -26,4 +26,9 @@ defmodule Telegram.GatewayTest do
 				    psswd}, {})
     assert response == {:stop, :normal, {}}
   end
+
+  test "encode message for telegram" do
+    msg_body = Gateway.encode_message(1, "message text")
+    assert msg_body != nil
+  end
 end
