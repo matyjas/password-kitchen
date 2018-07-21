@@ -38,6 +38,7 @@ defmodule Dialog.Convo do
       {:noreply, [utterance | state]}
     else
       _ ->
+	IO.inspect(message)
         {:noreply, state}
     end
   end
