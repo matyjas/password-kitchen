@@ -11,7 +11,7 @@ defmodule Dialog.Gateway do
 
   alias Kitchen.Password
 
-  @callback start_link(GenServer.option) :: GenServer.on_start
+  @callback start_link(GenServer.option()) :: GenServer.on_start()
   @callback send_message(pid, String.t(), String.t()) :: response
   @callback send_password(pid, String.t(), %Password{}) :: response
   @callback send_onboarding(pid, String.t(), String.t(), %Password{}) :: response

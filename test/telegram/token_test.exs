@@ -4,7 +4,6 @@ defmodule Telegram.TokenTest do
   alias Telegram.{Token}
 
   test "token exists" do
-    assert Token.value != nil
+    assert Token.value() != nil
   end
-
 end

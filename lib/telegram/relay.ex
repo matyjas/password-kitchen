@@ -6,7 +6,7 @@ defmodule Telegram.Relay do
 
   alias Dialog.Convo
   alias Telegram.{Update, Gateway}
-  
+
   def forward(update) do
     {:ok, pid} = Convo.start_link([])
     Convo.put_message(pid, update, Update, Gateway)
