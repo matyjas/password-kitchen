@@ -30,14 +30,18 @@ defmodule Dialog.Convo do
   end
 
   def handle_cast({:put, message, parser, gateway}, state) do
-    utterance = parser.extract_utterance(message)
-    sender_id = parser.extract_sender_id(message)
-    password = Oven.bake()
-
-    {:ok, gateway_pid} = gateway.start_link([])
-    gateway.send_password(gateway_pid, sender_id, password)
-
+    
+    with {:ok, utterance} <- parser.extract_utterance(message),
+	 {:ok, sender_id} <- parser.extract_sender_id(message),
+	 {:ok, pid} <- gateway.start_link([]),
+	   password <- Oven.bake()
+      do
+    gateway.send_password(pid, sender_id, password)
     {:noreply, [utterance | state]}
+      else
+	_ ->
+      {:noreply, state}
+    end
   end
 
   def handle_call(:get, _from, state) do
