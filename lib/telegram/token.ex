@@ -4,7 +4,7 @@ defmodule Telegram.Token do
   """
 
   @telegram_token Application.get_env(
-                    :passwork_kitchen,
+                    :password_kitchen,
                     :telegram_token,
                     "DEFAULT_TELEGRAM_TOKEN"
                   )

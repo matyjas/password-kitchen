@@ -92,13 +92,13 @@ defmodule Telegram.Gateway do
 
     cond do
       !Response.success?(response) ->
-        inspect(response)
+        IO.puts(response.body)
 
       response.status_code != 200 ->
-        inspect(response)
+        IO.puts(response.body)
 
       true ->
-        inspect(response.body)
+        IO.puts(response.body)
     end
 
     response
