@@ -81,7 +81,6 @@ defmodule Telegram.Gateway do
   defp prepare_url(suffix), do: "https://api.telegram.org/bot" <> Telegram.Token.value() <> suffix
 
   defp request(suffix, body) do
-    IO.inspect Telegram.Token.value()
     response =
       HTTPotion.post(
         prepare_url(suffix),
@@ -98,7 +97,7 @@ defmodule Telegram.Gateway do
         IO.puts(response.body)
 
       true ->
-        IO.puts(response.body)
+        IO.puts(response.status_code)
     end
 
     response
