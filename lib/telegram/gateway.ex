@@ -75,6 +75,7 @@ defmodule Telegram.Gateway do
 
   defp send_password(to_id, %Password{password: password}) do
     body = encode_message(to_id, password)
+    IO.inspect body
     request("/sendMessage", body)
   end
 
