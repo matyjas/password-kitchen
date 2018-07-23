@@ -14,5 +14,6 @@ defmodule Dialog.Gateway do
   @callback start_link(GenServer.option()) :: GenServer.on_start()
   @callback send_message(pid, String.t(), String.t()) :: response
   @callback send_password(pid, String.t(), %Password{}) :: response
+  # credo:disable-for-next-line Credo.Check.Readability.MaxLineLength
   @callback send_onboarding(pid, String.t(), String.t(), %Password{}) :: response
 end

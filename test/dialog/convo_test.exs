@@ -31,8 +31,9 @@ defmodule Dialog.ConvoTest do
 
   test "sends passwords" do
     message = "test-message"
+    mock_action = fn _, _, _ -> %HTTPotion.Response{} end
     expect(Mock.Gateway, :start_link, fn _ -> {:ok, self()} end)
-    expect(Mock.Gateway, :send_password, fn _, _, _ -> %HTTPotion.Response{} end)
+    expect(Mock.Gateway, :send_password, mock_action)
 
     cast = {:put, message, StubMessage, Mock.Gateway}
     {:noreply, new_state} = Convo.handle_cast(cast, [])

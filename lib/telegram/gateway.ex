@@ -9,6 +9,7 @@ defmodule Telegram.Gateway do
 
   alias Kitchen.Password
   alias HTTPotion.Response
+  alias Telegram.Token
 
   @stateless {}
 
@@ -78,7 +79,9 @@ defmodule Telegram.Gateway do
     request("/sendMessage", body)
   end
 
-  defp prepare_url(suffix), do: "https://api.telegram.org/bot" <> Telegram.Token.value() <> suffix
+  defp prepare_url(suffix) do
+    "https://api.telegram.org/bot" <> Token.value() <> suffix
+  end
 
   defp request(suffix, body) do
     response =
