@@ -9,13 +9,13 @@ defmodule Telegram.Relay do
 
   def forward(update) do
     with {:ok, sender} <- Update.extract_sender_id(update),
-	 via <- via_tuple(sender)
-      do
-        Convo.start_link(name: via) # may already be started
-        Convo.put_message(via, update, Update, Gateway)
-      else
-	{:error, :unexpected_message} ->
-	  IO.puts("cannot forward telegram message")
+         via <- via_tuple(sender) do
+      # may already be started
+      Convo.start_link(name: via)
+      Convo.put_message(via, update, Update, Gateway)
+    else
+      {:error, :unexpected_message} ->
+        IO.puts("cannot forward telegram message")
     end
   end
 
