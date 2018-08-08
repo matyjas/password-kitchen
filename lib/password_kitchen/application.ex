@@ -10,7 +10,8 @@ defmodule PK.Application do
     children = [
       # Starts a worker by calling: PK.Worker.start_link(arg)
       # {PK.Worker, arg},
-      Edge.Supervisor
+      Edge.Supervisor,
+      {Registry, keys: :unique, name: Registry.Convo}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

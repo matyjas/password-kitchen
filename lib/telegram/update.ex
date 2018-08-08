@@ -31,6 +31,6 @@ defmodule Telegram.Update do
   defp unknown_message_format(_update) do
     IO.puts("WARNING :: unhandled update from Telegram")
     # IO.puts update
-    {:error, "unexpected message"}
+    {:error, :unexpected_message}
   end
 end
