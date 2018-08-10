@@ -1,5 +1,5 @@
 defmodule Dialog.Convo do
-  use GenServer
+  use GenServer, restart: :transient
 
   @moduledoc """
   holds a conversation with an end user, messaging platform agnostic

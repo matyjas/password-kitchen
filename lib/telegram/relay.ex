@@ -11,7 +11,7 @@ defmodule Telegram.Relay do
     with {:ok, sender} <- Update.extract_sender_id(update),
          via <- via_tuple(sender) do
       # may already be started
-      Convo.start_link(name: via)
+      DynamicSupervisor.start_child(DynamicSupervisor.Convo, Convo.child_spec(name: via))
       Convo.put_message(via, update, Update, Gateway)
     else
       {:error, :unexpected_message} ->

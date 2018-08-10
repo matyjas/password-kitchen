@@ -11,7 +11,8 @@ defmodule PK.Application do
       # Starts a worker by calling: PK.Worker.start_link(arg)
       # {PK.Worker, arg},
       Edge.Supervisor,
-      {Registry, keys: :unique, name: Registry.Convo}
+      {Registry, keys: :unique, name: Registry.Convo},
+      {DynamicSupervisor, strategy: :one_for_one, name: DynamicSupervisor.Convo}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
