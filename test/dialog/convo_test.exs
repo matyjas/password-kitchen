@@ -6,9 +6,9 @@ defmodule Dialog.ConvoTest do
   alias Dialog.Convo
   alias Support.Dialog.StubMessage
 
-  # FakeGateway
   @gateway Support.Dialog.StubGateway
-
+  # FakeGateway
+  
   setup :verify_on_exit!
 
   test "can receive messages" do
@@ -29,6 +29,18 @@ defmodule Dialog.ConvoTest do
     assert conversation == [message]
   end
 
+  test "onboarding for new conversations" do
+    start_message = "/start"
+    mock_action = fn _, _, _, _ -> %HTTPotion.Response{} end
+    #expect(Mock.Gateway, :start_link, fn _ -> {:ok, self()} end)
+    #expect(Mock.Gateway, :send_onboarding, mock_action)
+
+#    cast = {:put, start_message, StubMessage, Mock.Gateway}
+ #   {:noreply, new_state} = Convo.handle_cast(cast, [])
+
+  #  assert new_state = [start_message]
+  end
+  
   test "sends passwords" do
     message = "test-message"
     mock_action = fn _, _, _ -> %HTTPotion.Response{} end
@@ -36,8 +48,9 @@ defmodule Dialog.ConvoTest do
     expect(Mock.Gateway, :send_password, mock_action)
 
     cast = {:put, message, StubMessage, Mock.Gateway}
-    {:noreply, new_state} = Convo.handle_cast(cast, [])
+    state = [message]
+    {:noreply, conversation} = Convo.handle_cast(cast, state)
 
-    assert new_state == [message]
+    assert conversation == [message, message]
   end
 end
