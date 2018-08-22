@@ -32,13 +32,14 @@ defmodule Dialog.ConvoTest do
   test "onboarding for new conversations" do
     start_message = "/start"
     mock_action = fn _, _, _, _ -> %HTTPotion.Response{} end
-    #expect(Mock.Gateway, :start_link, fn _ -> {:ok, self()} end)
-    #expect(Mock.Gateway, :send_onboarding, mock_action)
+    expect(Mock.Gateway, :start_link, fn _ -> {:ok, self()} end)
+    expect(Mock.Gateway, :send_onboarding, mock_action)
 
-#    cast = {:put, start_message, StubMessage, Mock.Gateway}
- #   {:noreply, new_state} = Convo.handle_cast(cast, [])
+    cast = {:put, start_message, StubMessage, Mock.Gateway}
+    empty_state = []
+    {:noreply, new_state} = Convo.handle_cast(cast, empty_state)
 
-  #  assert new_state = [start_message]
+    assert new_state == [start_message]
   end
   
   test "sends passwords" do

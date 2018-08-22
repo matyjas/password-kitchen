@@ -54,9 +54,8 @@ defmodule Telegram.Gateway do
         {:send_onboarding, to_id, text, %Password{} = password},
         _stateless
       ) do
-    %Response{body: body} = send_message(to_id, text)
+    %Response{body: _body} = send_message(to_id, text)
     # want to pull message_id out and set it as reply_to_message_id
-    inspect(body)
     send_password(to_id, password)
     {:stop, :normal, @stateless}
   end
