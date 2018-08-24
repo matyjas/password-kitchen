@@ -8,7 +8,7 @@ defmodule Dialog.ConvoTest do
 
   @gateway Support.Dialog.StubGateway
   # FakeGateway
-  
+
   setup :verify_on_exit!
 
   test "can receive messages" do
@@ -41,7 +41,7 @@ defmodule Dialog.ConvoTest do
 
     assert new_state == [start_message]
   end
-  
+
   test "sends passwords" do
     message = "test-message"
     mock_action = fn _, _, _ -> %HTTPotion.Response{} end

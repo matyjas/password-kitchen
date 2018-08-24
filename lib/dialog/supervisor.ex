@@ -8,6 +8,7 @@ defmodule Dialog.Supervisor do
 
   def init(_opts) do
     opts = [strategy: :one_for_all]
+
     children = [
       {Registry, keys: :unique, name: Registry.Convo},
       {DynamicSupervisor, strategy: :one_for_one, name: DynamicSupervisor.Convo}
@@ -15,5 +16,4 @@ defmodule Dialog.Supervisor do
 
     Supervisor.init(children, opts)
   end
-  
 end
