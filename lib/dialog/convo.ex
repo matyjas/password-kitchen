@@ -29,7 +29,7 @@ defmodule Dialog.Convo do
     {:ok, []}
   end
 
-  def handle_cast({:put, message, parser, gateway}, state = []) do
+  def handle_cast({:put, message, parser, gateway}, [] = state) do
     new_state =
       with {:ok, utterance} <- parser.extract_utterance(message),
            {:ok, sender_id} <- parser.extract_sender_id(message),
