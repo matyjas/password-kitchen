@@ -5,5 +5,6 @@ defmodule Dialog.OboardingTest do
 
   test "can pull onboarding" do
     greeting = Onboarding.get(0)
+    assert nil != greeting
   end
 end

@@ -6,6 +6,7 @@ defmodule Dialog.Convo do
   """
 
   alias Kitchen.Oven
+  alias Dialog.Onboarding
 
   # public
 
@@ -33,9 +34,11 @@ defmodule Dialog.Convo do
     new_state =
       with {:ok, utterance} <- parser.extract_utterance(message),
            {:ok, sender_id} <- parser.extract_sender_id(message),
-           {:ok, pid} <- gateway.start_link([]),
-           password <- Oven.bake() do
-        gateway.send_onboarding(pid, sender_id, "welcome", password)
+           {:ok, date} <- parser.extract_date(message),
+           {:ok, pid} <- gateway.start_link([]) do
+        password = Oven.bake()
+        onboarding = Onboarding.get(date)
+        gateway.send_onboarding(pid, sender_id, onboarding, password)
         [utterance | state]
       else
         _ ->

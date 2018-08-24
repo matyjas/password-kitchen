@@ -6,6 +6,6 @@ defmodule Support.Dialog.StubMessage do
   """
 
   def extract_sender_id(id), do: {:ok, id}
-  def extract_date(date), do: {:ok, date}
+  def extract_date(_date), do: {:ok, 1970}
   def extract_utterance(message), do: {:ok, message}
 end
