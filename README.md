@@ -1,6 +1,6 @@
 # Password Kitchen
 
-Password Kitchen cooks up tasty passwords for users of Telegram - https://telegram.me/password_kitchen_bot 
+Password Kitchen cooks up tasty passwords for Telegram users - https://telegram.me/password_kitchen_bot 
 
 ## Credits
 
