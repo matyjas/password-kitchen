@@ -1,21 +1,9 @@
-# PK
+# Password Kitchen
 
-**TODO: Add description**
+Password Kitchen cooks up tasty passwords for users of Telegram - https://telegram.me/password_kitchen_bot 
 
-## Installation
+## Credits
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `password_kitchen` to your list of dependencies in `mix.exs`:
+icons - <div>Icons made by <a href="https://www.flaticon.com/authors/hand-drawn-goods" title="Hand Drawn Goods">Hand Drawn Goods</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
-```elixir
-def deps do
-  [
-    {:password_kitchen, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/password_kitchen](https://hexdocs.pm/password_kitchen).
 
