@@ -23,12 +23,12 @@ defmodule PK.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:credo, "~> 0.9.1", only: [:dev]},
       {:dialyxir, "~> 1.0.0-rc.2", only: [:dev], runtime: false},
       {:jason, "~> 1.1"},
       {:httpotion, "~> 3.1.0"},
       {:mox, "~> 0.3", only: :test},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false}
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
     ]
   end
