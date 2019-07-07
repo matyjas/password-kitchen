@@ -2,7 +2,10 @@ defmodule Dialog.Convo do
   use GenServer, restart: :transient
 
   @moduledoc """
-  holds a conversation with an end user, messaging platform agnostic
+  A `GenServer` that holds conversation history of an end user in each instance. 
+  State is a list of past utterances from the end user.
+  It is messaging platform agnostic.
+  If state is an empty list, responses to gateway include onboarding.
   """
 
   alias Kitchen.Oven
@@ -14,11 +17,24 @@ defmodule Dialog.Convo do
     GenServer.start_link(__MODULE__, :ok, opts)
   end
 
+  @doc """
+  Async delivery of new message from an end user.
+  Details of the messaging platform are abstracted behind `message`, `parser` and `gateway`.
+  `message` is the **full raw message** sent from messaging platform. 
+  `parser` implements callbacks in `Dialog.Message`. 
+  `gateway` implements callbacks in `Dialog.Gateway`. 
+  Depending on content of message and local state, different outbound messages are sent via `gateway`. 
+  """
   @spec put_message(pid, term, term, term) :: term
   def put_message(pid, message, parser, gateway) do
     GenServer.cast(pid, {:put, message, parser, gateway})
   end
 
+  @doc """
+  Synchronous request to return list of utterances collected in state.
+
+  Returns `{:ok, []}`.
+  """
   @spec get_messages(pid) :: term
   def get_messages(pid) do
     GenServer.call(pid, :get)

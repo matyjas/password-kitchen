@@ -8,7 +8,14 @@ defmodule PK.MixProject do
       elixir: "~> 1.8",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      # ex_doc
+      name: "Password Kitchen",
+      source: "https://github.com/matyjas/password-kitchen",
+      docs: [
+        main: "PK.Application",
+        extras: ["README.md"]
+        ]
     ]
   end
 
@@ -25,8 +32,9 @@ defmodule PK.MixProject do
     [
       {:jason, "~> 1.1"},
       {:httpotion, "~> 3.1.0"},
-      {:mox, "~> 0.5", only: :test},
       {:plug_cowboy, "~> 2.0"},
+      {:mox, "~> 0.5", only: :test},
+      {:ex_doc, "~> 0.19", only: :dev, runtime: false},
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false}
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
