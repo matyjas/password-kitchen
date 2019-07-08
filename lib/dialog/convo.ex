@@ -3,6 +3,7 @@ defmodule Dialog.Convo do
 
   @moduledoc """
   A `GenServer` that holds conversation history of an end user in each instance. 
+
   State is a list of past utterances from the end user.
   It is messaging platform agnostic.
   If state is an empty list, responses to gateway include onboarding.
@@ -19,6 +20,7 @@ defmodule Dialog.Convo do
 
   @doc """
   Async delivery of new message from an end user.
+
   Details of the messaging platform are abstracted behind `message`, `parser` and `gateway`.
   `message` is the **full raw message** sent from messaging platform. 
   `parser` implements callbacks in `Dialog.Message`. 
