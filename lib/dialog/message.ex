@@ -3,7 +3,7 @@ defmodule Dialog.Message do
   Generic message behaviour, abstracts platform specifics
 
   This behaviour is implemented for different message types 
-  from different message platforms.
+  from different messaging platforms.
   The intention is to lazily avoid processing a message unless we need to,
   however this would be nicer as a series of closures hiding the raw message.
   """
@@ -19,7 +19,7 @@ defmodule Dialog.Message do
   @doc """
   Returns an id parsed from message. 
 
-  The returned id is used to send messages back to the user.
+  The returned id is used to address messages sent back to the user.
   """
   @callback extract_sender_id(any) :: helpful_response
 
