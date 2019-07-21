@@ -4,7 +4,11 @@ defmodule Telegram.Gateway do
   @behaviour Dialog.Gateway
 
   @moduledoc """
-  GenServer acts as `Gateway` to Telegram messaging
+  Implements `Dialog.Gateway` behaviour for Telegram messaging platform.
+
+  Sends HTTP requests to [Telegram API](https://core.telegram.org/bots/api#sendmessage)
+
+  This is a stateless `GenServer`, probably should be implemented as a `Task` 
   """
 
   alias Kitchen.Password
@@ -62,6 +66,15 @@ defmodule Telegram.Gateway do
 
   ## utils
 
+  @doc ~S"""
+  Prepares JSON for message to Telegram
+
+  Format is based on Telegram API
+
+  ## Example
+      iex> Telegram.Gateway.encode_message(14, "Undrafted")
+      "{\"chat_id\":14,\"text\":\"Undrafted\"}" 
+  """
   def encode_message(to_id, message) do
     Jason.encode!(%{chat_id: to_id, text: message})
   end

@@ -1,7 +1,6 @@
 defmodule Edge.Router do
   use Plug.Router
-
-  alias Telegram.Relay, as: Telegram
+  @moduledoc "HTTP entry point for Password Kitchen"
 
   plug(Plug.Parsers, parsers: [:json], json_decoder: Jason)
   plug(:match)
@@ -12,7 +11,7 @@ defmodule Edge.Router do
   end
 
   post "/api/telegram/v1" do
-    Telegram.forward(conn.params)
+    Telegram.Relay.forward(conn.params)
     send_resp(conn, 200, "ok")
   end
 

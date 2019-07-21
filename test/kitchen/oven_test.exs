@@ -1,6 +1,6 @@
 defmodule Kitchen.OvenTest do
   use ExUnit.Case, async: true
-
+  doctest Kitchen.Oven
   alias Kitchen.{Oven, Password}
 
   describe "Oven.bake defaults produce passwords" do

@@ -2,14 +2,14 @@ defmodule Edge.Supervisor do
   use Supervisor
   @moduledoc "encapsulates config of plug/cowboy"
 
-  alias Plug.Adapters.Cowboy
-  alias Edge.Router
-
   def start_link(opts) do
     Supervisor.start_link(__MODULE__, opts)
   end
 
   def init(_opts) do
+    alias Plug.Adapters.Cowboy
+    alias Edge.Router
+      
     port = Application.fetch_env!(:password_kitchen, :port)
 
     children = [

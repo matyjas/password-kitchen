@@ -1,7 +1,5 @@
 defmodule Telegram.Token do
-  @moduledoc """
-  Encapsulates token for auth with Telegram, pulled from environment var
-  """
+  @moduledoc "Encapsulates token for auth with Telegram, pulled from environment var"
 
   @telegram_token Application.get_env(
                     :password_kitchen,
@@ -9,5 +7,14 @@ defmodule Telegram.Token do
                     "DEFAULT_TELEGRAM_TOKEN"
                   )
 
+  @doc """
+  returns token for sending messages to Telegram
+
+  Token source from ENV variable.
+  
+  ## Examples
+      iex> Telegram.Token.value()
+      "TESTING_TELEGRAM_TOKEN" 
+  """
   def value, do: @telegram_token
 end

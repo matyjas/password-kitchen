@@ -1,6 +1,6 @@
 defmodule Telegram.GatewayTest do
   use ExUnit.Case, async: true
-
+  doctest Telegram.Gateway
   alias Telegram.{Gateway}
   alias Kitchen.Oven
   @maciej_id 228_303_213

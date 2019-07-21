@@ -1,6 +1,18 @@
 defmodule Kitchen.Oven do
   @moduledoc """
-  In the Password Kitchen, Oven bakes passwords
+  In the Password Kitchen, `Oven.bake`s passwords
+
+  The minimum viable password ~~recipe~~ strategy:
+  - 12 random characters
+  - requires
+    - lower case letter
+    - UPPER CASE LETTER
+    - Numb3r
+    - $ymbol
+  - avoids confusing characters
+    - 1, l, I, |
+    - 0, O
+    - ', `` ` ``
   """
 
   alias Kitchen.{Validator, Password}
@@ -18,6 +30,13 @@ defmodule Kitchen.Oven do
   @symbol_5 ?{..?{
   @symbol_6 ?}..?~
 
+  @doc """
+  Generates simple passwords.
+
+  Takes nothing and returns a `t:Kitchen.Password.t()` struct.
+  """
+              
+  @spec bake() :: Password.t()
   def bake do
     psswd = valid_password()
     # credo:disable-for-next-line Credo.Check.Readability.MaxLineLength

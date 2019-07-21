@@ -73,19 +73,14 @@ defmodule Telegram.UpdateTest do
   test "sad path" do
     # warning logged from here
     boo = "boo"
-    {unhandled_update_type, _error_message} = Update.extract_sender_date(boo)
+    {unhandled_update_type, _error_message} = Update.extract_sender_id(boo)
     assert :error == unhandled_update_type
   end
 
-  test "initial message" do
-    {:ok, sender_id, date} = Update.extract_sender_date(@start_mess)
-    assert @start_mess_id == sender_id
-    assert @start_mess_date == date
-  end
-
   test "sample message" do
-    {:ok, sender_id, date} = Update.extract_sender_date(@samp_mess)
+    {:ok, sender_id} = Update.extract_sender_id(@samp_mess)
     assert @samp_mess_id == sender_id
+    {:ok, date} = Update.extract_date(@samp_mess)
     assert @samp_mess_date == date
   end
 end
