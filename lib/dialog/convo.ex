@@ -9,8 +9,8 @@ defmodule Dialog.Convo do
   If state is an empty list, responses to gateway include onboarding.
   """
 
-  alias Kitchen.Oven
   alias Dialog.Onboarding
+  alias Kitchen.Oven
 
   # public
 

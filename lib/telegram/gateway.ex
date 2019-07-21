@@ -11,8 +11,8 @@ defmodule Telegram.Gateway do
   This is a stateless `GenServer`, probably should be implemented as a `Task` 
   """
 
-  alias Kitchen.Password
   alias HTTPotion.Response
+  alias Kitchen.Password
   alias Telegram.Token
 
   @stateless {}

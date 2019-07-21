@@ -2,7 +2,7 @@ defmodule Telegram.Relay do
   @moduledoc "Relays messages from Telegram to generic conversation components."
 
   alias Dialog.Convo
-  alias Telegram.{Update, Gateway}
+  alias Telegram.{Gateway, Update}
 
   @doc """
   Forwards update message to `Dialog.Convo` associated with sender.

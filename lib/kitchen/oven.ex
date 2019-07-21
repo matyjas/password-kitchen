@@ -15,7 +15,7 @@ defmodule Kitchen.Oven do
     - ', `` ` ``
   """
 
-  alias Kitchen.{Validator, Password}
+  alias Kitchen.{Password, Validator}
 
   @nums ?2..?9
   @lower_case_1 ?a..?k
@@ -39,7 +39,6 @@ defmodule Kitchen.Oven do
   @spec bake() :: Password.t()
   def bake do
     psswd = valid_password()
-    # credo:disable-for-next-line Credo.Check.Readability.MaxLineLength
     %Password{password: psswd, size: 12, nums?: true, caps?: true, lowers?: true, symbols?: true}
   end
 

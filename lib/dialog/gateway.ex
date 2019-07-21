@@ -44,6 +44,5 @@ defmodule Dialog.Gateway do
   * `text` is the onboarding text
   * `password` is the `Kitchen.Password` struct containing a password
   """
-  # credo:disable-for-next-line Credo.Check.Readability.MaxLineLength
   @callback send_onboarding(pid, String.t(), String.t(), %Password{}) :: response
 end

@@ -7,8 +7,8 @@ defmodule Edge.Supervisor do
   end
 
   def init(_opts) do
-    alias Plug.Adapters.Cowboy
     alias Edge.Router
+    alias Plug.Adapters.Cowboy
 
     port = Application.fetch_env!(:password_kitchen, :port)
 
