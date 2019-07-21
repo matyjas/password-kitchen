@@ -35,7 +35,7 @@ defmodule Kitchen.Oven do
 
   Takes nothing and returns a `t:Kitchen.Password.t()` struct.
   """
-              
+
   @spec bake() :: Password.t()
   def bake do
     psswd = valid_password()

@@ -7,10 +7,18 @@ defmodule Kitchen.Password do
   @enforce_keys [:password, :size, :nums?, :caps?, :symbols?, :lowers?]
   # credo:disable-for-next-line Credo.Check.Readability.MaxLineLength
   defstruct password: "", size: 0, nums?: false, caps?: false, symbols?: false, lowers?: false
+
   @typedoc """
   Holds the password and information about it.
   """
-  @type t :: %__MODULE__{password: String.t(), size: pos_integer(), nums?: boolean(), caps?: boolean(), symbols?: boolean(), lowers?: boolean() }
+  @type t :: %__MODULE__{
+          password: String.t(),
+          size: pos_integer(),
+          nums?: boolean(),
+          caps?: boolean(),
+          symbols?: boolean(),
+          lowers?: boolean()
+        }
 end
 
 defimpl String.Chars, for: Kitchen.Password do

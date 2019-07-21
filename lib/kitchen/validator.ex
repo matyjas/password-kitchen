@@ -28,7 +28,7 @@ defmodule Kitchen.Validator do
     password =~ ~r([0-9])
   end
 
-  @doc "Checks if password has $ymbols"  
+  @doc "Checks if password has $ymbols"
   @spec has_sym(Kitchen.Password.t()) :: boolean()
   def has_sym(password) do
     password =~ ~r([]}~!@#%&_=:;",/\$\?\^\*\(\)\-\+\[\{\\\.\<\>\?])

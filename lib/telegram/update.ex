@@ -2,7 +2,7 @@ defmodule Telegram.Update do
   @behaviour Dialog.Message
 
   @moduledoc "Implements `Dialog.Message` for Update messages from Telegram"
-  
+
   def extract_sender_id(%{"message" => %{"chat" => %{"id" => sender}}}) do
     {:ok, sender}
   end
@@ -22,7 +22,7 @@ defmodule Telegram.Update do
   def extract_utterance(update), do: unknown_message_format(update)
 
   defp unknown_message_format(_update) do
-    #IO.puts("WARNING :: unhandled update from Telegram")
+    # IO.puts("WARNING :: unhandled update from Telegram")
     # IO.puts update
     {:error, :unexpected_message}
   end

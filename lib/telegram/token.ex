@@ -11,7 +11,7 @@ defmodule Telegram.Token do
   returns token for sending messages to Telegram
 
   Token source from ENV variable.
-  
+
   ## Examples
       iex> Telegram.Token.value()
       "TESTING_TELEGRAM_TOKEN" 

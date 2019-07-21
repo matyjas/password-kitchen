@@ -9,7 +9,7 @@ defmodule Edge.Supervisor do
   def init(_opts) do
     alias Plug.Adapters.Cowboy
     alias Edge.Router
-      
+
     port = Application.fetch_env!(:password_kitchen, :port)
 
     children = [
