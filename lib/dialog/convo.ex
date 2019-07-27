@@ -35,7 +35,7 @@ defmodule Dialog.Convo do
   def put_message(pid, utterance, sender_id, gateway) do
     GenServer.call(pid, {:put_msg, utterance, sender_id, gateway})
   end
-  
+
   @doc """
   Synchronous request to return list of utterances collected in state.
 
@@ -66,12 +66,12 @@ defmodule Dialog.Convo do
 
   def handle_call({:put_msg, utterance, sender_id, gateway}, _from, state) do
     {:ok, pid} = gateway.start_link([])
-    password = Oven.bake() 
+    password = Oven.bake()
     gateway.send_password(pid, sender_id, password)
 
     {:reply, :ok, [utterance | state]}
   end
-  
+
   def handle_call(:get, _from, state) do
     {:reply, state, state}
   end
