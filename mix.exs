@@ -33,6 +33,7 @@ defmodule PK.MixProject do
       {:jason, "~> 1.1"},
       {:httpotion, "~> 3.1.0"},
       {:plug_cowboy, "~> 2.0"},
+      {:slack, "~> 0.19.0"},
       {:mox, "~> 0.5", only: :test},
       {:ex_doc, "~> 0.19", only: :dev, runtime: false},
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
