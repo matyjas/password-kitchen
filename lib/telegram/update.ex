@@ -1,5 +1,4 @@
 defmodule Telegram.Update do
-
   @moduledoc "Parses Update messages from Telegram"
 
   @typedoc """

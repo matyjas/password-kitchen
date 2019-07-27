@@ -54,7 +54,6 @@ defmodule Dialog.Convo do
 
   @doc "If state is an empty list, responses to gateway include onboarding."
   def handle_call({:put_msg, utterance, sender_id, gateway}, _from, [] = state) do
-
     time = Time.utc_now()
     onboarding = Onboarding.get(time.second)
     password = Oven.bake()

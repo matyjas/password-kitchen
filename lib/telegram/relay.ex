@@ -18,8 +18,8 @@ defmodule Telegram.Relay do
   def forward(update) do
     with {:ok, sender} <- Update.extract_sender_id(update),
          {:ok, utterance} <- Update.extract_utterance(update),
-           via <- via_tuple(sender),
-           child_spec <- Convo.child_spec(name: via) do
+         via <- via_tuple(sender),
+         child_spec <- Convo.child_spec(name: via) do
       # may already be started
       DynamicSupervisor.start_child(DynamicSupervisor.Convo, child_spec)
       Convo.put_message(via, utterance, sender, Gateway)
