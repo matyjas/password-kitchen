@@ -68,24 +68,11 @@ defmodule Dialog.Convo do
     {:ok, pid} = gateway.start_link([])
     password = Oven.bake() 
     gateway.send_password(pid, sender_id, password)
+
     {:reply, :ok, [utterance | state]}
   end
   
   def handle_call(:get, _from, state) do
     {:reply, state, state}
-  end
-
-  # private
-  defp send_password(message, parser, gateway, state) do
-    with {:ok, utterance} <- parser.extract_utterance(message),
-         {:ok, sender_id} <- parser.extract_sender_id(message),
-         {:ok, pid} <- gateway.start_link([]),
-         password <- Oven.bake() do
-      gateway.send_password(pid, sender_id, password)
-      [utterance | state]
-    else
-      _ ->
-        state
-    end
   end
 end
