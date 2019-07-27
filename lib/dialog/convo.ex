@@ -6,7 +6,6 @@ defmodule Dialog.Convo do
 
   State is a list of past utterances from the end user.
   It is messaging platform agnostic.
-  If state is an empty list, responses to gateway include onboarding.
   """
 
   alias Dialog.Onboarding
@@ -19,23 +18,20 @@ defmodule Dialog.Convo do
   end
 
   @doc """
-  Async delivery of new message from an end user.
+  Sync delivery of new message from an end user.
 
-  Details of the messaging platform are abstracted behind `message`, `parser` and `gateway`.
-  `message` is the **full raw message** sent from messaging platform. 
-  `parser` implements callbacks in `Dialog.Message`. 
-  `gateway` implements callbacks in `Dialog.Gateway`. 
+  Going sync to provide slight back pressure on messaging platform
+
+  - `utterance` is the user written text sent from messaging platform. 
+  - `sender_id` identifies user who sent text in messaging platform
+  - `gateway` implements callbacks in `Dialog.Gateway`. 
   Depending on content of message and local state, different outbound messages are sent via `gateway`. 
+  Details of sending to the messaging platform are abstracted behind `Dialog.Gateway`.
   """
   @spec put_message(pid, String.t(), String.t(), term) :: term
   def put_message(pid, utterance, sender_id, gateway) do
     GenServer.call(pid, {:put_msg, utterance, sender_id, gateway})
   end
-  #  def put_message(pid, message, parser, gateway) do
-#    GenServer.cast(pid, {:put, message, parser, gateway})
-#  end
-
-
   
   @doc """
   Synchronous request to return list of utterances collected in state.
@@ -53,22 +49,16 @@ defmodule Dialog.Convo do
     {:ok, []}
   end
 
-  def handle_cast({:put, message, parser, gateway}, [] = state) do
-    new_state =
-      with {:ok, utterance} <- parser.extract_utterance(message),
-           {:ok, sender_id} <- parser.extract_sender_id(message),
-           {:ok, date} <- parser.extract_date(message),
-           {:ok, pid} <- gateway.start_link([]) do
-        password = Oven.bake()
-        onboarding = Onboarding.get(date)
-        gateway.send_onboarding(pid, sender_id, onboarding, password)
-        [utterance | state]
-      else
-        _ ->
-          state
-      end
+  @doc "If state is an empty list, responses to gateway include onboarding."
+  def handle_call({:put_msg, utterance, sender_id, gateway}, [] = state) do
 
-    {:noreply, new_state}
+    time = Time.utc_now()
+    onboarding = Onboarding.get(time.second)
+    password = Oven.bake()
+    {:ok, pid} = gateway.start_link([])
+    gateway.send_onboarding(pid, sender_id, onboarding, password)
+
+    {:reply, :ok, [utterance | state]}
   end
 
   def handle_cast({:put, message, parser, gateway}, state) do

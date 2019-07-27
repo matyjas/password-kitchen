@@ -5,18 +5,21 @@ defmodule Telegram.Relay do
   alias Telegram.{Gateway, Update}
 
   @doc """
-  Forwards update message to `Dialog.Convo` associated with sender.
+  Forwards update messages to `Dialog.Convo` associated with sender.
 
-  Decorates message from Telegram with implementations of 
-  - `Dialog.Message`
-  - `Dialog.Gateway`
+  Extracts 
+  - sender id
+  - text of message as utterance
+
+  If cannot extract utterance and sender id, then drop the message.
+
+  Decorates message from Telegram with implementation of `Dialog.Gateway`
   """
   def forward(update) do
     with {:ok, sender} <- Update.extract_sender_id(update),
          {:ok, utterance} <- Update.extract_utterance(update),
-           via <- via_tuple(sender) do
-      
-      child_spec = Convo.child_spec(name: via)
+           via <- via_tuple(sender),
+           child_spec <- Convo.child_spec(name: via) do
       # may already be started
       DynamicSupervisor.start_child(DynamicSupervisor.Convo, child_spec)
       Convo.put_message(via, utterance, sender, Gateway)

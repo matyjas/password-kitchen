@@ -35,9 +35,9 @@ defmodule Dialog.ConvoTest do
     expect(Mock.Gateway, :start_link, fn _ -> {:ok, self()} end)
     expect(Mock.Gateway, :send_onboarding, mock_action)
 
-    cast = {:put, start_message, StubMessage, Mock.Gateway}
+    call = {:put_msg, start_message, "summer-sender", Mock.Gateway}
     empty_state = []
-    {:noreply, new_state} = Convo.handle_cast(cast, empty_state)
+    {:reply, :ok, new_state} = Convo.handle_call(call, empty_state)
 
     assert new_state == [start_message]
   end
