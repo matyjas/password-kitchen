@@ -27,11 +27,16 @@ defmodule Dialog.Convo do
   `gateway` implements callbacks in `Dialog.Gateway`. 
   Depending on content of message and local state, different outbound messages are sent via `gateway`. 
   """
-  @spec put_message(pid, term, term, term) :: term
-  def put_message(pid, message, parser, gateway) do
-    GenServer.cast(pid, {:put, message, parser, gateway})
+  @spec put_message(pid, String.t(), String.t(), term) :: term
+  def put_message(pid, utterance, sender_id, gateway) do
+    GenServer.call(pid, {:put_msg, utterance, sender_id, gateway})
   end
+  #  def put_message(pid, message, parser, gateway) do
+#    GenServer.cast(pid, {:put, message, parser, gateway})
+#  end
 
+
+  
   @doc """
   Synchronous request to return list of utterances collected in state.
 
@@ -71,6 +76,13 @@ defmodule Dialog.Convo do
     {:noreply, new_state}
   end
 
+  def handle_call({:put_msg, utterance, sender_id, gateway}, _from, state) do
+    {:ok, pid} = gateway.start_link([])
+    password = Oven.bake() 
+    gateway.send_password(pid, sender_id, password)
+    {:reply, :ok, [utterance | state]}
+  end
+  
   def handle_call(:get, _from, state) do
     {:reply, state, state}
   end

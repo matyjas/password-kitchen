@@ -14,9 +14,9 @@ defmodule Dialog.ConvoTest do
   test "can receive messages" do
     {:ok, pid} = Convo.start_link([])
     assert is_pid(pid)
-    message = %{}
+    message = "an utterance"
 
-    Convo.put_message(pid, message, StubMessage, @gateway)
+    Convo.put_message(pid, message, "sweta_sendy", @gateway)
     assert Process.alive?(pid)
   end
 
@@ -24,7 +24,7 @@ defmodule Dialog.ConvoTest do
     {:ok, pid} = Convo.start_link([])
     message = "test-message"
 
-    Convo.put_message(pid, message, StubMessage, @gateway)
+    Convo.put_message(pid, message, "suzy-sender", @gateway)
     conversation = Convo.get_messages(pid)
     assert conversation == [message]
   end
