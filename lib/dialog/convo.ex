@@ -22,11 +22,14 @@ defmodule Dialog.Convo do
 
   Going sync to provide slight back pressure on messaging platform
 
-  - `utterance` is the user written text sent from messaging platform. 
+  - `utterance` is the user written text sent from messaging platform
   - `sender_id` identifies user who sent text in messaging platform
-  - `gateway` implements callbacks in `Dialog.Gateway`. 
+  - `gateway` implements callbacks in `Dialog.Gateway`
+
   Depending on content of message and local state, different outbound messages are sent via `gateway`. 
   Details of sending to the messaging platform are abstracted behind `Dialog.Gateway`.
+
+  Returns `{:ok}`
   """
   @spec put_message(pid, String.t(), String.t(), term) :: term
   def put_message(pid, utterance, sender_id, gateway) do
@@ -50,7 +53,7 @@ defmodule Dialog.Convo do
   end
 
   @doc "If state is an empty list, responses to gateway include onboarding."
-  def handle_call({:put_msg, utterance, sender_id, gateway}, [] = state) do
+  def handle_call({:put_msg, utterance, sender_id, gateway}, _from, [] = state) do
 
     time = Time.utc_now()
     onboarding = Onboarding.get(time.second)
@@ -59,11 +62,6 @@ defmodule Dialog.Convo do
     gateway.send_onboarding(pid, sender_id, onboarding, password)
 
     {:reply, :ok, [utterance | state]}
-  end
-
-  def handle_cast({:put, message, parser, gateway}, state) do
-    new_state = send_password(message, parser, gateway, state)
-    {:noreply, new_state}
   end
 
   def handle_call({:put_msg, utterance, sender_id, gateway}, _from, state) do

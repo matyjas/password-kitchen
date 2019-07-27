@@ -4,7 +4,6 @@ defmodule Dialog.ConvoTest do
   import Mox
 
   alias Dialog.Convo
-  alias Support.Dialog.StubMessage
 
   @gateway Support.Dialog.StubGateway
   # FakeGateway
@@ -37,7 +36,7 @@ defmodule Dialog.ConvoTest do
 
     call = {:put_msg, start_message, "summer-sender", Mock.Gateway}
     empty_state = []
-    {:reply, :ok, new_state} = Convo.handle_call(call, empty_state)
+    {:reply, :ok, new_state} = Convo.handle_call(call, self(), empty_state)
 
     assert new_state == [start_message]
   end
@@ -48,9 +47,9 @@ defmodule Dialog.ConvoTest do
     expect(Mock.Gateway, :start_link, fn _ -> {:ok, self()} end)
     expect(Mock.Gateway, :send_password, mock_action)
 
-    cast = {:put, message, StubMessage, Mock.Gateway}
+    call = {:put_msg, message, "stacy-sender", Mock.Gateway}
     state = [message]
-    {:noreply, conversation} = Convo.handle_cast(cast, state)
+    {:reply, :ok, conversation} = Convo.handle_call(call, self(), state)
 
     assert conversation == [message, message]
   end
