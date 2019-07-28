@@ -29,5 +29,5 @@ slack_token =
 
 # 
 config :password_kitchen, telegram_token: telegram_token
-config :password_kitche, slack_token: slack_token
+config :password_kitchen, slack_token: slack_token
 config :password_kitchen, port: port
