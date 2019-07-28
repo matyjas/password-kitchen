@@ -1,7 +1,7 @@
-defmodule Telegram.TokenTest do
+defmodule MsgPlatform.Telegram.TokenTest do
   use ExUnit.Case, async: true
-  doctest Telegram.Token
-  alias Telegram.{Token}
+  doctest MsgPlatform.Telegram.Token
+  alias MsgPlatform.Telegram.{Token}
 
   test "token exists" do
     assert Token.value() != nil

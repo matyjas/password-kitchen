@@ -1,4 +1,4 @@
-defmodule Telegram.Update do
+defmodule MsgPlatform.Telegram.Update do
   @moduledoc "Parses Update messages from Telegram"
 
   @typedoc """

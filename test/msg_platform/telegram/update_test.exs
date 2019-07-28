@@ -1,7 +1,7 @@
-defmodule Telegram.UpdateTest do
+defmodule MsgPlatform.Telegram.UpdateTest do
   use ExUnit.Case, async: true
 
-  alias Telegram.{Update}
+  alias MsgPlatform.Telegram.Update
 
   @start_mess_id 228_303_213
   @start_mess_date 1_510_610_264

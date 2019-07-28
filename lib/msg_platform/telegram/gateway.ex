@@ -1,4 +1,4 @@
-defmodule Telegram.Gateway do
+defmodule MsgPlatform.Telegram.Gateway do
   use GenServer
 
   @behaviour Dialog.Gateway
@@ -13,7 +13,7 @@ defmodule Telegram.Gateway do
 
   alias HTTPotion.Response
   alias Kitchen.Password
-  alias Telegram.Token
+  alias MsgPlatform.Telegram.Token
 
   @stateless {}
 
@@ -72,7 +72,7 @@ defmodule Telegram.Gateway do
   Format is based on Telegram API
 
   ## Example
-      iex> Telegram.Gateway.encode_message(14, "Undrafted")
+      iex> MsgPlatform.Telegram.Gateway.encode_message(14, "Undrafted")
       "{\"chat_id\":14,\"text\":\"Undrafted\"}" 
   """
   def encode_message(to_id, message) do

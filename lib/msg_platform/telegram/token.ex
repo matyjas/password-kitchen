@@ -1,4 +1,4 @@
-defmodule Telegram.Token do
+defmodule MsgPlatform.Telegram.Token do
   @moduledoc "Encapsulates token for auth with Telegram, pulled from environment var"
 
   @telegram_token Application.get_env(
@@ -13,7 +13,7 @@ defmodule Telegram.Token do
   Token source from ENV variable.
 
   ## Examples
-      iex> Telegram.Token.value()
+      iex> MsgPlatform.Telegram.Token.value()
       "TESTING_TELEGRAM_TOKEN" 
   """
   def value, do: @telegram_token
