@@ -15,6 +15,11 @@ defmodule Edge.Router do
     send_resp(conn, 200, "ok")
   end
 
+  post "/api/slack/v1" do
+    resp = MsgPlatform.Slack.Relay.forward(conn.body_params)
+    send_resp(conn, 200, resp)
+  end
+  
   match _ do
     send_resp(conn, 404, "oooops")
   end
